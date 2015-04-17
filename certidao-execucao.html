@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <title>MILA.DOC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Bruno Calheira">
+
+    <!-- Le styles -->
+    <!-- include libries(jQuery, bootstrap, fontawesome) -->
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 80px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic' rel='stylesheet' type='text/css'>
+    <!-- Folha de Estilos -->
+    <link href="css/summernote.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Menu Principal -->
+    <div class="navbar navbar-fixed-top naoimprime">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          </a>
+          
+          <!-- Logo -->
+          <a class="brand" href="index.html"><img src="img/logo_marinete_p.png">MILA.doc</a>
+
+          <!-- Fim Logo -->
+
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Atos Judiciais
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu">
+                    <a tabindex="-1" href="#">Atos Ordinatórios</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Baixa dos Autos</a></li>
+                      <li><a href="#">Contrariar Impugnação</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a tabindex="-1" href="#">Despachos</a>
+                    <ul class="dropdown-menu">
+                      <li i><a href="#">Defiro Pedido</a></li>
+                      <li><a href="#">Custas pelo Minimo</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">Petições</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Certidões</a>
+                <ul class="dropdown-menu">
+                      <li><a href="certidao-execucao.html">Execução</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Fim Menu Principal -->
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        
+        <!-- Texto de Apresentacao -->
+        <!-- Menu Lateral -->
+
+        <div id="lateral" class="span3 naoimprime">
+          <div class="well sidebar-nav">         
+
+            <ul class="nav nav-list">
+              
+              <li class="nav-header">Preencha os dados abaixo para personalizar o documento</li>
+              
+              <li><input id="processo" type="text" placeholder="Processo"></li>
+              <li class="nav-header">Sentença</li>
+              <li><select id="sentenca">
+                  <option> -- Sentença -- </option>
+                  <option>Procedência</option>
+                  <option>Procedência em Parte</option>
+                  <option>Procedência com Pedido Contraposto</option>
+                  </select>
+              </li>
+              <li><input id="ev_sentenca" type="text" placeholder="Nr. Evento"></li>
+              <li><input id="valor_dano_moral" type="text" placeholder="Dano Moral - Valor"></li>
+              <li><input id="outros_danos" type="text" placeholder="Outros Danos"></li>
+              <li><input id="valor_outros_danos" type="text" placeholder="Outros Danos - Valor"></li>
+
+
+              <li class="nav-header">Recurso</li>
+              <li><select id="recurso">
+                  <option> -- Recurso -- </option>
+                  <option>provido</option>
+                  <option>NÃO provido</option>
+                  </select>
+              </li>
+              <li><input id="ev_recurso" type="text" placeholder="Nr. Evento"></li>
+              
+              <li class="nav-header">Intimação</li>
+              <li><select id="intimacao">
+                  <option> -- Resultado Intimação -- </option>
+                  <option>quedaram-se inertes</option>
+                  <option>pagaram parcialmente</option>
+                  </select>
+              </li>
+              <li><input id="ev_intimacao" type="text" placeholder="Nrs. Eventos"></li>
+              
+              <li class="nav-header">Petição Execução</li>
+              <li><input id="ev_peticao" type="text" placeholder="Nrs. Eventos"></li>
+              
+
+
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        
+        <div class="span8">
+            
+            <!-- Documento -->
+            <div id="papel" class="hero-unit click2edit">
+                  <h2 id="processo-doc"></h2>
+                  <h1 id="titulo" class="centralizado">Certidão</h1>
+                  <p id="paragrafo_01">Preencha os dados no formulario lateral</p>
+                  <p id="paragrafo_02"></p>
+                  <p id="paragrafo_03"></p>
+                  <p id="paragrafo_04"></p>
+            </div>
+
+            <button id="edit" class="btn btn-large btn-primary naoimprime" onclick="edit()" type="button">Editar Documento</button>
+            
+            <button id="save" class="btn btn-large btn-primary naoimprime" onclick="save()" type="button">Visualizar Documento</button>
+
+            <button id="imprimir" class="btn btn-large naoimprime" type="button" onclick="window.print();">Imprimir</button>
+        </div><!--/span-->
+      
+      </div><!--/row-->
+
+
+      <hr>
+
+      <footer>
+        <p class="naoimprime">Software Livre desenvolvido por <a href="http://calheira.com">Bruno Calheira</a></p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="js/summernote.js"></script>
+    <script src="js/milanet.js"></script>
+    <script src="js/editor.js"></script>
+
+  </body>
+</html>

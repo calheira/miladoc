@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <title>MILA.DOC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Bruno Calheira">
+
+    <!-- Le styles -->
+    <!-- include libries(jQuery, bootstrap, fontawesome) -->
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 80px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic' rel='stylesheet' type='text/css'>
+    <!-- Folha de Estilos -->
+    <link href="css/summernote.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top naoimprime">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="index.html"><img src="img/logo_marinete_p.png">MILA.doc</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Atos Judiciais
+                <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu">
+                    <a tabindex="-1" href="#">Atos Ordinatórios</a>
+                    <ul class="dropdown-menu">
+                      <li id="atoBaixaDosAutos"><a href="#">Baixa dos Autos</a></li>
+                      <li id="atoContrariarImpugnacao"><a href="#">Contrariar Impugnação</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a tabindex="-1" href="#">Despachos</a>
+                    <ul class="dropdown-menu">
+                      <li id="despDefiroPedido"><a href="#">Defiro Pedido</a></li>
+                      <li><a href="#">Custas pelo Minimo</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">Petições</a></li>
+              <li><a href="#contact">Certidões</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        
+        <!-- Texto de Apresentacao -->
+        <div id="introducao" class="hero-unit">
+           <div class="row">
+            <div class="span3"><img src="img/logo_marinete.png"></div>
+            <div class="span9">
+              <h2>Bem vindo ao MILA.doc</h2>
+              <p>Um gerador automático de documentos jurídicos baseado em modelos pré-definidos.</p>
+              <p>Para utilizá-lo, clique no botão abaixo ou escolha um modelo de documento no menu superior.</p>
+              <p>Este programa é um software livre. Você pode utilizá-lo sob os termos da <a href="http://www.gnu.org/licenses/gpl-2.0.txt">Licença Pública Geral GNU</a>.</p>
+              <p><button id="inicio" class="btn btn-large btn-success" type="button">Iniciar</button><p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Lateral -->
+
+        <div id="lateral" class="span3 naoimprime">
+          <div class="well sidebar-nav">         
+
+            <ul class="nav nav-list">
+              
+              <li class="nav-header">Preencha os dados abaixo para personalizar o documento</li>
+              
+              <li><input id="processo" type="text" placeholder="Processo"></li>
+
+              <li class="nav-header">Cabeçalho</li>
+              <li><input id="orgao" type="text" placeholder="Orgão"></li>
+              
+              <li class="nav-header">Local</li>
+              <li><input id="local" type="text" placeholder="Cidade"></li>
+
+              <li class="nav-header">Assinatura</li>
+              <li><input id="nome" type="text" placeholder="Nome"></li>
+              <li><input id="cargo" type="text" placeholder="Cargo"></li>
+              
+              <li class="nav-header">Dados do Documento</li>
+              <li><select id="parte">
+                  <option>a Parte Autora</option>
+                  <option>a Parte Ré</option>
+                  <option>ambas as partes</option>
+                  <option>os Advogados da Parte Autora</option>
+                  <option>os Advogados da Parte Ré</option>
+                  <option>os Advogados de ambas as Partes</option>
+                  </select>
+              </li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        
+        <div class="span8">
+            
+            <!-- Documento -->
+            <div id="papel" class="hero-unit click2edit">
+                  <h2 id="orgao-doc"></h2>
+                  <h2 id="processo-doc"></h2>
+                  <h1 id="titulo" class="centralizado">Escolha o Modelo de Documento Desejado</h1>
+                  <p id="conteudo"></p>
+                  <p id="data" class="centralizado"></p>
+                  <p id="nome-doc" class="centralizado"></p>
+                  <p id="cargo-doc" class="centralizado"></p>
+
+            </div>
+
+            <button id="edit" class="btn btn-large btn-primary naoimprime" onclick="edit()" type="button">Editar Documento</button>
+            
+            <button id="save" class="btn btn-large btn-primary naoimprime" onclick="save()" type="button">Visualizar Documento</button>
+
+            <button id="imprimir" class="btn btn-large naoimprime" type="button" onclick="window.print();">Imprimir</button>
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p class="naoimprime">Software Livre desenvolvido por <a href="http://calheira.com">Bruno Calheira</a></p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="js/summernote.js"></script>
+    <script src="js/milanet.js"></script>
+    <script src="js/editor.js"></script>
+
+  </body>
+</html>
